@@ -3,6 +3,8 @@ import { useMemo, useState } from "react";
 import { Search } from "lucide-react";
 
 import { SiteNav, SiteFooter } from "@/components/site-nav";
+import { Reveal } from "@/components/reveal";
+
 import { Button } from "@/components/ui/button";
 import { products, thb } from "@/lib/shop";
 
@@ -88,11 +90,13 @@ function Store() {
         ) : (
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {list.map((p, i) => (
-              <article
+              <Reveal
                 key={p.id}
-                className="animate-fade-up group overflow-hidden rounded-2xl border border-border bg-card transition-all hover:-translate-y-1.5 hover:border-primary/40 hover:shadow-[var(--shadow-lift)]"
-                style={{ "--fade-delay": `${i * 100}ms` } as React.CSSProperties}
+                as="article"
+                delay={i * 100}
+                className="tilt-card group overflow-hidden rounded-2xl border border-border bg-card hover:-translate-y-1.5 hover:border-primary/40 hover:shadow-[var(--shadow-lift)]"
               >
+
                 <Link to="/product/$id" params={{ id: p.id }} className="block">
                   <div className="relative overflow-hidden bg-secondary">
                     <img
@@ -122,7 +126,7 @@ function Store() {
                     </Link>
                   </Button>
                 </div>
-              </article>
+              </Reveal>
             ))}
           </div>
         )}

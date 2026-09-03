@@ -1,6 +1,11 @@
 import sword from "@/assets/item-sword.jpg";
 import pet from "@/assets/item-pet.jpg";
 import coins from "@/assets/item-coins.jpg";
+import gameSkyblock from "@/assets/game-skyblock.jpg";
+import gameAfk from "@/assets/game-afk.jpg";
+import gamePets from "@/assets/game-pets.jpg";
+import gameBlade from "@/assets/game-blade.jpg";
+
 
 export type Product = {
   id: string;
@@ -61,3 +66,25 @@ export const products: Product[] = [
 ];
 
 export const getProduct = (id: string) => products.find((p) => p.id === id);
+
+export type Game = {
+  id: string;
+  name: string;
+  tag: string;
+  players: string;
+  image: string;
+};
+
+export const games: Game[] = [
+  {
+    id: "sky-battle",
+    name: "Sky Battle Islands",
+    tag: "ผจญภัย",
+    players: "12.4K",
+    image: gameSkyblock,
+  },
+  { id: "afk-farm", name: "AFK Coin Farm", tag: "AFK / Idle", players: "8.9K", image: gameAfk },
+  { id: "pet-cloud", name: "Cloud Pet Simulator", tag: "สัตว์เลี้ยง", players: "15.2K", image: gamePets },
+  { id: "blade-defense", name: "Blade Defense", tag: "ต่อสู้", players: "6.1K", image: gameBlade },
+];
+

@@ -11,12 +11,15 @@ import {
   ShieldCheck,
   Headphones,
   Star,
+  Gamepad2,
 } from "lucide-react";
 
 import { SiteNav, SiteFooter } from "@/components/site-nav";
+import { Reveal } from "@/components/reveal";
 import { Button } from "@/components/ui/button";
-import { products, thb } from "@/lib/shop";
+import { products, games, thb } from "@/lib/shop";
 import heroBg from "@/assets/hero-cloud.jpg";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -180,35 +183,95 @@ function Index() {
             <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-primary/20 text-primary-glow">
               <Megaphone className="size-5" />
             </span>
-            <p className="text-sm">
-              ยินดีต้อนรับสู่ MiniCloud AFK — ไอเทม Roblox ส่งอัตโนมัติตลอด 24 ชั่วโมง
+            <div className="relative flex-1 overflow-hidden">
+              <div className="animate-marquee flex w-max gap-12 whitespace-nowrap text-sm">
+                {[0, 1].map((k) => (
+                  <span key={k} className="flex gap-12">
+                    <span>ยินดีต้อนรับสู่ MiniCloud AFK — ไอเทม Roblox ส่งอัตโนมัติตลอด 24 ชั่วโมง</span>
+                    <span>โปรใหม่ ลดสูงสุด 30% สำหรับลูกค้าครั้งแรก</span>
+                    <span>เติมเหรียญคลาวด์ รับโบนัสทันที 5%</span>
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        {/* GAMES */}
+        <section className="mx-auto max-w-7xl px-6 pt-20">
+          <Reveal className="flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <p className="text-xs font-medium uppercase tracking-[0.2em] text-primary">
+                เกมที่รองรับ
+              </p>
+              <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
+                เกมยอดฮิตที่เราให้บริการ
+              </h2>
+            </div>
+            <p className="max-w-sm text-sm text-muted-foreground">
+              เลือกไอเทมจากเกมที่คุณเล่นอยู่ ระบบรองรับการส่งอัตโนมัติทุกเกม
             </p>
+          </Reveal>
+
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {games.map((g, i) => (
+              <Reveal key={g.id} delay={i * 100}>
+                <article className="tilt-card group relative overflow-hidden rounded-2xl border border-border bg-card hover:-translate-y-1.5 hover:border-primary/40 hover:shadow-[var(--shadow-lift)]">
+                  <div className="relative overflow-hidden">
+                    <img
+                      src={g.image}
+                      alt={`ภาพเกม ${g.name}`}
+                      width={1024}
+                      height={768}
+                      loading="lazy"
+                      className="aspect-[4/3] w-full object-cover transition-transform duration-[900ms] group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/10 to-transparent" />
+                    <span className="absolute left-3 top-3 rounded-full bg-background/85 px-2.5 py-1 text-[11px] font-medium backdrop-blur">
+                      {g.tag}
+                    </span>
+                    <div className="absolute inset-x-4 bottom-3 text-ink-foreground">
+                      <p className="text-sm font-medium">{g.name}</p>
+                      <p className="mt-0.5 flex items-center gap-1.5 text-[11px] opacity-80">
+                        <Gamepad2 className="size-3" /> {g.players} คนกำลังเล่น
+                      </p>
+                    </div>
+                  </div>
+                </article>
+              </Reveal>
+            ))}
           </div>
         </section>
 
         {/* FEATURES */}
         <section className="mx-auto max-w-7xl px-6 py-20">
-          <p className="text-xs font-medium uppercase tracking-[0.2em] text-primary">ทำไมต้องเรา</p>
-          <h2 className="mt-3 max-w-xl text-3xl font-semibold tracking-tight sm:text-4xl">
-            ซื้อไอเทมง่ายที่สุด เร็วที่สุด ปลอดภัยที่สุด
-          </h2>
+          <Reveal>
+            <p className="text-xs font-medium uppercase tracking-[0.2em] text-primary">
+              ทำไมต้องเรา
+            </p>
+            <h2 className="mt-3 max-w-xl text-3xl font-semibold tracking-tight sm:text-4xl">
+              ซื้อไอเทมง่ายที่สุด เร็วที่สุด ปลอดภัยที่สุด
+            </h2>
+          </Reveal>
 
           <div className="mt-10 grid gap-5 md:grid-cols-3">
             {features.map((f, i) => (
-              <div
+              <Reveal
                 key={f.title}
-                className="animate-fade-up group rounded-2xl border border-border bg-card p-7 transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-[var(--shadow-lift)]"
-                style={{ "--fade-delay": `${i * 110}ms` } as React.CSSProperties}
+                delay={i * 110}
+                className="tilt-card group rounded-2xl border border-border bg-card p-7 hover:-translate-y-1 hover:border-primary/40 hover:shadow-[var(--shadow-lift)]"
               >
-                <span className="flex size-12 items-center justify-center rounded-2xl bg-ink text-ink-foreground transition-colors group-hover:bg-primary">
+                <span className="flex size-12 items-center justify-center rounded-2xl bg-ink text-ink-foreground transition-all duration-300 group-hover:bg-primary group-hover:scale-110">
                   <f.icon className="size-5" />
                 </span>
                 <p className="mt-5 text-lg font-medium">{f.title}</p>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{f.detail}</p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </section>
+
 
         {/* PRODUCTS */}
         <section className="border-y border-border bg-muted/40">
@@ -231,71 +294,81 @@ function Index() {
 
             <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {products.map((p, i) => (
-                <Link
-                  key={p.id}
-                  to="/product/$id"
-                  params={{ id: p.id }}
-                  className="animate-fade-up group overflow-hidden rounded-2xl border border-border bg-card transition-all hover:-translate-y-1.5 hover:border-primary/40 hover:shadow-[var(--shadow-lift)]"
-                  style={{ "--fade-delay": `${i * 110}ms` } as React.CSSProperties}
-                >
-                  <div className="relative overflow-hidden bg-secondary">
-                    <img
-                      src={p.image}
-                      alt={p.name}
-                      width={1024}
-                      height={768}
-                      loading="lazy"
-                      className="aspect-[4/3] w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                    <span className="absolute left-4 top-4 rounded-full bg-ink px-3 py-1 text-[11px] font-medium text-ink-foreground">
-                      {p.category}
-                    </span>
-                  </div>
-                  <div className="flex items-center justify-between gap-3 p-5">
-                    <div>
-                      <p className="font-medium">{p.name}</p>
-                      <p className="mt-1 text-xs text-muted-foreground">
-                        คงเหลือ {p.stock} ชิ้น · ขายแล้ว {p.sold}
-                      </p>
+                <Reveal key={p.id} delay={i * 110}>
+                  <Link
+                    to="/product/$id"
+                    params={{ id: p.id }}
+                    className="tilt-card group block overflow-hidden rounded-2xl border border-border bg-card hover:-translate-y-1.5 hover:border-primary/40 hover:shadow-[var(--shadow-lift)]"
+                  >
+                    <div className="relative overflow-hidden bg-secondary">
+                      <img
+                        src={p.image}
+                        alt={p.name}
+                        width={1024}
+                        height={768}
+                        loading="lazy"
+                        className="aspect-[4/3] w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
+                      <span className="absolute left-4 top-4 rounded-full bg-ink px-3 py-1 text-[11px] font-medium text-ink-foreground">
+                        {p.category}
+                      </span>
                     </div>
-                    <p className="shrink-0 text-lg font-semibold text-primary">{thb(p.price)}</p>
-                  </div>
-                </Link>
+                    <div className="flex items-center justify-between gap-3 p-5">
+                      <div>
+                        <p className="font-medium">{p.name}</p>
+                        <p className="mt-1 text-xs text-muted-foreground">
+                          คงเหลือ {p.stock} ชิ้น · ขายแล้ว {p.sold}
+                        </p>
+                      </div>
+                      <p className="shrink-0 text-lg font-semibold text-primary">{thb(p.price)}</p>
+                    </div>
+                  </Link>
+                </Reveal>
               ))}
             </div>
+
           </div>
         </section>
 
         {/* STEPS */}
         <section className="mx-auto max-w-7xl px-6 py-20">
-          <p className="text-xs font-medium uppercase tracking-[0.2em] text-primary">ขั้นตอน</p>
-          <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">สั่งซื้อใน 3 ขั้นตอน</h2>
+          <Reveal>
+            <p className="text-xs font-medium uppercase tracking-[0.2em] text-primary">ขั้นตอน</p>
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
+              สั่งซื้อใน 3 ขั้นตอน
+            </h2>
+          </Reveal>
 
           <div className="mt-10 grid gap-5 md:grid-cols-3">
             {steps.map((s, i) => (
-              <div
+              <Reveal
                 key={s.n}
-                className="animate-fade-up relative rounded-2xl border border-border bg-card p-7"
-                style={{ "--fade-delay": `${i * 110}ms` } as React.CSSProperties}
+                delay={i * 110}
+                className="tilt-card group relative rounded-2xl border border-border bg-card p-7 hover:-translate-y-1 hover:border-primary/40 hover:shadow-[var(--shadow-lift)]"
               >
-                <span className="text-5xl font-semibold text-primary/15">{s.n}</span>
+                <span className="text-5xl font-semibold text-primary/15 transition-colors group-hover:text-primary/35">
+                  {s.n}
+                </span>
                 <p className="mt-3 text-lg font-medium">{s.title}</p>
                 <p className="mt-2 text-sm text-muted-foreground">{s.detail}</p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </section>
 
+
         {/* REVIEWS */}
         <section className="border-t border-border bg-muted/40">
           <div className="mx-auto max-w-7xl px-6 py-20">
-            <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">ลูกค้าพูดถึงเรา</h2>
+            <Reveal as="h2" className="text-3xl font-semibold tracking-tight sm:text-4xl">
+              ลูกค้าพูดถึงเรา
+            </Reveal>
             <div className="mt-10 grid gap-5 md:grid-cols-3">
               {reviews.map((r, i) => (
-                <figure
+                <Reveal
                   key={r.name}
-                  className="animate-fade-up rounded-2xl border border-border bg-card p-7"
-                  style={{ "--fade-delay": `${i * 110}ms` } as React.CSSProperties}
+                  delay={i * 110}
+                  className="tilt-card rounded-2xl border border-border bg-card p-7 hover:-translate-y-1 hover:shadow-[var(--shadow-lift)]"
                 >
                   <div className="flex gap-0.5 text-primary">
                     {Array.from({ length: r.rating }).map((_, idx) => (
@@ -304,17 +377,20 @@ function Index() {
                   </div>
                   <blockquote className="mt-4 text-sm leading-relaxed">“{r.text}”</blockquote>
                   <figcaption className="mt-4 text-xs text-muted-foreground">{r.name}</figcaption>
-                </figure>
+                </Reveal>
               ))}
             </div>
           </div>
         </section>
 
+
         {/* CTA */}
         <section className="mx-auto max-w-7xl px-6 py-20">
-          <div className="relative overflow-hidden rounded-3xl bg-ink px-8 py-16 text-center text-ink-foreground">
+          <Reveal className="relative overflow-hidden rounded-3xl bg-ink px-8 py-16 text-center text-ink-foreground">
             <div className="grid-lines absolute inset-0 opacity-30" />
+            <div className="animate-float pointer-events-none absolute -left-16 -top-16 size-56 rounded-full bg-primary/25 blur-3xl" />
             <div className="relative">
+
               <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
                 พร้อมเริ่มเล่นแบบไม่ต้องรอแล้วหรือยัง
               </h2>
@@ -327,7 +403,8 @@ function Index() {
                 </Link>
               </Button>
             </div>
-          </div>
+          </Reveal>
+
         </section>
       </main>
 
