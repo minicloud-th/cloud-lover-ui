@@ -186,29 +186,80 @@ function Index() {
           </div>
         </section>
 
+        {/* GAMES */}
+        <section className="mx-auto max-w-7xl px-6 pt-20">
+          <Reveal className="flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <p className="text-xs font-medium uppercase tracking-[0.2em] text-primary">
+                เกมที่รองรับ
+              </p>
+              <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
+                เกมยอดฮิตที่เราให้บริการ
+              </h2>
+            </div>
+            <p className="max-w-sm text-sm text-muted-foreground">
+              เลือกไอเทมจากเกมที่คุณเล่นอยู่ ระบบรองรับการส่งอัตโนมัติทุกเกม
+            </p>
+          </Reveal>
+
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {games.map((g, i) => (
+              <Reveal key={g.id} delay={i * 100}>
+                <article className="tilt-card group relative overflow-hidden rounded-2xl border border-border bg-card hover:-translate-y-1.5 hover:border-primary/40 hover:shadow-[var(--shadow-lift)]">
+                  <div className="relative overflow-hidden">
+                    <img
+                      src={g.image}
+                      alt={`ภาพเกม ${g.name}`}
+                      width={1024}
+                      height={768}
+                      loading="lazy"
+                      className="aspect-[4/3] w-full object-cover transition-transform duration-[900ms] group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/10 to-transparent" />
+                    <span className="absolute left-3 top-3 rounded-full bg-background/85 px-2.5 py-1 text-[11px] font-medium backdrop-blur">
+                      {g.tag}
+                    </span>
+                    <div className="absolute inset-x-4 bottom-3 text-ink-foreground">
+                      <p className="text-sm font-medium">{g.name}</p>
+                      <p className="mt-0.5 flex items-center gap-1.5 text-[11px] opacity-80">
+                        <Gamepad2 className="size-3" /> {g.players} คนกำลังเล่น
+                      </p>
+                    </div>
+                  </div>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </section>
+
         {/* FEATURES */}
         <section className="mx-auto max-w-7xl px-6 py-20">
-          <p className="text-xs font-medium uppercase tracking-[0.2em] text-primary">ทำไมต้องเรา</p>
-          <h2 className="mt-3 max-w-xl text-3xl font-semibold tracking-tight sm:text-4xl">
-            ซื้อไอเทมง่ายที่สุด เร็วที่สุด ปลอดภัยที่สุด
-          </h2>
+          <Reveal>
+            <p className="text-xs font-medium uppercase tracking-[0.2em] text-primary">
+              ทำไมต้องเรา
+            </p>
+            <h2 className="mt-3 max-w-xl text-3xl font-semibold tracking-tight sm:text-4xl">
+              ซื้อไอเทมง่ายที่สุด เร็วที่สุด ปลอดภัยที่สุด
+            </h2>
+          </Reveal>
 
           <div className="mt-10 grid gap-5 md:grid-cols-3">
             {features.map((f, i) => (
-              <div
+              <Reveal
                 key={f.title}
-                className="animate-fade-up group rounded-2xl border border-border bg-card p-7 transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-[var(--shadow-lift)]"
-                style={{ "--fade-delay": `${i * 110}ms` } as React.CSSProperties}
+                delay={i * 110}
+                className="tilt-card group rounded-2xl border border-border bg-card p-7 hover:-translate-y-1 hover:border-primary/40 hover:shadow-[var(--shadow-lift)]"
               >
-                <span className="flex size-12 items-center justify-center rounded-2xl bg-ink text-ink-foreground transition-colors group-hover:bg-primary">
+                <span className="flex size-12 items-center justify-center rounded-2xl bg-ink text-ink-foreground transition-all duration-300 group-hover:bg-primary group-hover:scale-110">
                   <f.icon className="size-5" />
                 </span>
                 <p className="mt-5 text-lg font-medium">{f.title}</p>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{f.detail}</p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </section>
+
 
         {/* PRODUCTS */}
         <section className="border-y border-border bg-muted/40">
