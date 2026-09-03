@@ -183,11 +183,20 @@ function Index() {
             <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-primary/20 text-primary-glow">
               <Megaphone className="size-5" />
             </span>
-            <p className="text-sm">
-              ยินดีต้อนรับสู่ MiniCloud AFK — ไอเทม Roblox ส่งอัตโนมัติตลอด 24 ชั่วโมง
-            </p>
+            <div className="relative flex-1 overflow-hidden">
+              <div className="animate-marquee flex w-max gap-12 whitespace-nowrap text-sm">
+                {[0, 1].map((k) => (
+                  <span key={k} className="flex gap-12">
+                    <span>ยินดีต้อนรับสู่ MiniCloud AFK — ไอเทม Roblox ส่งอัตโนมัติตลอด 24 ชั่วโมง</span>
+                    <span>โปรใหม่ ลดสูงสุด 30% สำหรับลูกค้าครั้งแรก</span>
+                    <span>เติมเหรียญคลาวด์ รับโบนัสทันที 5%</span>
+                  </span>
+                ))}
+              </div>
+            </div>
           </div>
         </section>
+
 
         {/* GAMES */}
         <section className="mx-auto max-w-7xl px-6 pt-20">
@@ -377,9 +386,11 @@ function Index() {
 
         {/* CTA */}
         <section className="mx-auto max-w-7xl px-6 py-20">
-          <div className="relative overflow-hidden rounded-3xl bg-ink px-8 py-16 text-center text-ink-foreground">
+          <Reveal className="relative overflow-hidden rounded-3xl bg-ink px-8 py-16 text-center text-ink-foreground">
             <div className="grid-lines absolute inset-0 opacity-30" />
+            <div className="animate-float pointer-events-none absolute -left-16 -top-16 size-56 rounded-full bg-primary/25 blur-3xl" />
             <div className="relative">
+
               <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
                 พร้อมเริ่มเล่นแบบไม่ต้องรอแล้วหรือยัง
               </h2>
