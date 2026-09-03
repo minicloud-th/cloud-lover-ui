@@ -289,13 +289,15 @@ function Index() {
         {/* REVIEWS */}
         <section className="border-t border-border bg-muted/40">
           <div className="mx-auto max-w-7xl px-6 py-20">
-            <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">ลูกค้าพูดถึงเรา</h2>
+            <Reveal as="h2" className="text-3xl font-semibold tracking-tight sm:text-4xl">
+              ลูกค้าพูดถึงเรา
+            </Reveal>
             <div className="mt-10 grid gap-5 md:grid-cols-3">
               {reviews.map((r, i) => (
-                <figure
+                <Reveal
                   key={r.name}
-                  className="animate-fade-up rounded-2xl border border-border bg-card p-7"
-                  style={{ "--fade-delay": `${i * 110}ms` } as React.CSSProperties}
+                  delay={i * 110}
+                  className="tilt-card rounded-2xl border border-border bg-card p-7 hover:-translate-y-1 hover:shadow-[var(--shadow-lift)]"
                 >
                   <div className="flex gap-0.5 text-primary">
                     {Array.from({ length: r.rating }).map((_, idx) => (
@@ -304,11 +306,12 @@ function Index() {
                   </div>
                   <blockquote className="mt-4 text-sm leading-relaxed">“{r.text}”</blockquote>
                   <figcaption className="mt-4 text-xs text-muted-foreground">{r.name}</figcaption>
-                </figure>
+                </Reveal>
               ))}
             </div>
           </div>
         </section>
+
 
         {/* CTA */}
         <section className="mx-auto max-w-7xl px-6 py-20">
