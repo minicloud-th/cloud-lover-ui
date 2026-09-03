@@ -11,12 +11,15 @@ import {
   ShieldCheck,
   Headphones,
   Star,
+  Gamepad2,
 } from "lucide-react";
 
 import { SiteNav, SiteFooter } from "@/components/site-nav";
+import { Reveal } from "@/components/reveal";
 import { Button } from "@/components/ui/button";
-import { products, thb } from "@/lib/shop";
+import { products, games, thb } from "@/lib/shop";
 import heroBg from "@/assets/hero-cloud.jpg";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
