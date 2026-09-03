@@ -10,8 +10,13 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AfkRentalRouteImport } from './routes/afk-rental'
+import { Route as CartRouteImport } from './routes/cart'
+import { Route as CompareRouteImport } from './routes/compare'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as GamesRouteImport } from './routes/games'
 import { Route as StoreRouteImport } from './routes/store'
+import { Route as WishlistRouteImport } from './routes/wishlist'
 import { Route as ProductIdRouteImport } from './routes/product.$id'
 
 const IndexRoute = IndexRouteImport.update({
@@ -19,14 +24,39 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AfkRentalRoute = AfkRentalRouteImport.update({
+  id: '/afk-rental',
+  path: '/afk-rental',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CartRoute = CartRouteImport.update({
+  id: '/cart',
+  path: '/cart',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CompareRoute = CompareRouteImport.update({
+  id: '/compare',
+  path: '/compare',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GamesRoute = GamesRouteImport.update({
+  id: '/games',
+  path: '/games',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const StoreRoute = StoreRouteImport.update({
   id: '/store',
   path: '/store',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WishlistRoute = WishlistRouteImport.update({
+  id: '/wishlist',
+  path: '/wishlist',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProductIdRoute = ProductIdRouteImport.update({
@@ -37,35 +67,83 @@ const ProductIdRoute = ProductIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/afk-rental': typeof AfkRentalRoute
+  '/cart': typeof CartRoute
+  '/compare': typeof CompareRoute
   '/contact': typeof ContactRoute
+  '/games': typeof GamesRoute
   '/store': typeof StoreRoute
+  '/wishlist': typeof WishlistRoute
   '/product/$id': typeof ProductIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/afk-rental': typeof AfkRentalRoute
+  '/cart': typeof CartRoute
+  '/compare': typeof CompareRoute
   '/contact': typeof ContactRoute
+  '/games': typeof GamesRoute
   '/store': typeof StoreRoute
+  '/wishlist': typeof WishlistRoute
   '/product/$id': typeof ProductIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/afk-rental': typeof AfkRentalRoute
+  '/cart': typeof CartRoute
+  '/compare': typeof CompareRoute
   '/contact': typeof ContactRoute
+  '/games': typeof GamesRoute
   '/store': typeof StoreRoute
+  '/wishlist': typeof WishlistRoute
   '/product/$id': typeof ProductIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/contact' | '/store' | '/product/$id'
+  fullPaths:
+    | '/'
+    | '/afk-rental'
+    | '/cart'
+    | '/compare'
+    | '/contact'
+    | '/games'
+    | '/store'
+    | '/wishlist'
+    | '/product/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/contact' | '/store' | '/product/$id'
-  id: '__root__' | '/' | '/contact' | '/store' | '/product/$id'
+  to:
+    | '/'
+    | '/afk-rental'
+    | '/cart'
+    | '/compare'
+    | '/contact'
+    | '/games'
+    | '/store'
+    | '/wishlist'
+    | '/product/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/afk-rental'
+    | '/cart'
+    | '/compare'
+    | '/contact'
+    | '/games'
+    | '/store'
+    | '/wishlist'
+    | '/product/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AfkRentalRoute: typeof AfkRentalRoute
+  CartRoute: typeof CartRoute
+  CompareRoute: typeof CompareRoute
   ContactRoute: typeof ContactRoute
+  GamesRoute: typeof GamesRoute
   StoreRoute: typeof StoreRoute
+  WishlistRoute: typeof WishlistRoute
   ProductIdRoute: typeof ProductIdRoute
 }
 
@@ -78,6 +156,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/afk-rental': {
+      id: '/afk-rental'
+      path: '/afk-rental'
+      fullPath: '/afk-rental'
+      preLoaderRoute: typeof AfkRentalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cart': {
+      id: '/cart'
+      path: '/cart'
+      fullPath: '/cart'
+      preLoaderRoute: typeof CartRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/compare': {
+      id: '/compare'
+      path: '/compare'
+      fullPath: '/compare'
+      preLoaderRoute: typeof CompareRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/contact': {
       id: '/contact'
       path: '/contact'
@@ -85,11 +184,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/games': {
+      id: '/games'
+      path: '/games'
+      fullPath: '/games'
+      preLoaderRoute: typeof GamesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/store': {
       id: '/store'
       path: '/store'
       fullPath: '/store'
       preLoaderRoute: typeof StoreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/wishlist': {
+      id: '/wishlist'
+      path: '/wishlist'
+      fullPath: '/wishlist'
+      preLoaderRoute: typeof WishlistRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/product/$id': {
@@ -104,8 +217,13 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AfkRentalRoute: AfkRentalRoute,
+  CartRoute: CartRoute,
+  CompareRoute: CompareRoute,
   ContactRoute: ContactRoute,
+  GamesRoute: GamesRoute,
   StoreRoute: StoreRoute,
+  WishlistRoute: WishlistRoute,
   ProductIdRoute: ProductIdRoute,
 }
 export const routeTree = rootRouteImport
