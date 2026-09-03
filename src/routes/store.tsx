@@ -3,6 +3,8 @@ import { useMemo, useState } from "react";
 import { Search } from "lucide-react";
 
 import { SiteNav, SiteFooter } from "@/components/site-nav";
+import { Reveal } from "@/components/reveal";
+
 import { Button } from "@/components/ui/button";
 import { products, thb } from "@/lib/shop";
 
@@ -124,7 +126,7 @@ function Store() {
                     </Link>
                   </Button>
                 </div>
-              </article>
+              </Reveal>
             ))}
           </div>
         )}
