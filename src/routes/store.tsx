@@ -1,12 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { Search } from "lucide-react";
+import { Heart, Scale, Search } from "lucide-react";
 
 import { SiteNav, SiteFooter } from "@/components/site-nav";
 import { Reveal } from "@/components/reveal";
 
 import { Button } from "@/components/ui/button";
 import { products, thb } from "@/lib/shop";
+import { useShop } from "@/lib/store-state";
 
 export const Route = createFileRoute("/store")({
   head: () => ({
@@ -32,6 +33,7 @@ export const Route = createFileRoute("/store")({
 const categories = ["ทั้งหมด", "อาวุธ", "สัตว์เลี้ยง", "สกุลเงิน"] as const;
 
 function Store() {
+  const { addToCart, toggleWishlist, toggleCompare, wishlist, compare } = useShop();
   const [active, setActive] = useState<string>("ทั้งหมด");
   const [query, setQuery] = useState("");
 
@@ -120,7 +122,39 @@ function Store() {
                     </div>
                     <p className="shrink-0 text-lg font-semibold text-primary">{thb(p.price)}</p>
                   </div>
-                  <Button asChild variant="ink" size="sm" className="mt-5 w-full rounded-full">
+                  <div className="mt-5 flex gap-2">
+                    <Button
+                      variant="ink"
+                      size="sm"
+                      className="flex-1 rounded-full"
+                      onClick={() => addToCart(p.id)}
+                    >
+                      เพิ่มลงตะกร้า
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      className="rounded-full"
+                      aria-label="ถูกใจ"
+                      onClick={() => toggleWishlist(p.id)}
+                    >
+                      <Heart
+                        className={
+                          wishlist.includes(p.id) ? "size-4 fill-current text-primary" : "size-4"
+                        }
+                      />
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      className="rounded-full"
+                      aria-label="เปรียบเทียบ"
+                      onClick={() => toggleCompare(p.id)}
+                    >
+                      <Scale className={compare.includes(p.id) ? "size-4 text-primary" : "size-4"} />
+                    </Button>
+                  </div>
+                  <Button asChild variant="ghost" size="sm" className="mt-2 w-full rounded-full">
                     <Link to="/product/$id" params={{ id: p.id }}>
                       ดูรายละเอียด
                     </Link>
