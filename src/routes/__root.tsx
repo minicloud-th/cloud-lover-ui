@@ -77,16 +77,27 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "MiniCloud AFK — ร้านค้าไอเทม Roblox" },
+      {
+        name: "description",
+        content: "ร้านค้าไอเทม Roblox MiniCloud AFK ส่งอัตโนมัติ แอดมินพร้อมบริการ 24 ชม.",
+      },
+      { name: "author", content: "MiniCloud AFK" },
+      { property: "og:title", content: "MiniCloud AFK — ร้านค้าไอเทม Roblox" },
+      {
+        property: "og:description",
+        content: "ร้านค้าไอเทม Roblox MiniCloud AFK ส่งอัตโนมัติ แอดมินพร้อมบริการ 24 ชม.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Anuphan:wght@300;400;500;600;700&display=swap",
+      },
       {
         rel: "stylesheet",
         href: appCss,
