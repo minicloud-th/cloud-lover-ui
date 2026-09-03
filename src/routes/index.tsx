@@ -403,7 +403,8 @@ function Index() {
                 </Link>
               </Button>
             </div>
-          </div>
+          </Reveal>
+
         </section>
       </main>
 
