@@ -231,60 +231,68 @@ function Index() {
 
             <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {products.map((p, i) => (
-                <Link
-                  key={p.id}
-                  to="/product/$id"
-                  params={{ id: p.id }}
-                  className="animate-fade-up group overflow-hidden rounded-2xl border border-border bg-card transition-all hover:-translate-y-1.5 hover:border-primary/40 hover:shadow-[var(--shadow-lift)]"
-                  style={{ "--fade-delay": `${i * 110}ms` } as React.CSSProperties}
-                >
-                  <div className="relative overflow-hidden bg-secondary">
-                    <img
-                      src={p.image}
-                      alt={p.name}
-                      width={1024}
-                      height={768}
-                      loading="lazy"
-                      className="aspect-[4/3] w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                    <span className="absolute left-4 top-4 rounded-full bg-ink px-3 py-1 text-[11px] font-medium text-ink-foreground">
-                      {p.category}
-                    </span>
-                  </div>
-                  <div className="flex items-center justify-between gap-3 p-5">
-                    <div>
-                      <p className="font-medium">{p.name}</p>
-                      <p className="mt-1 text-xs text-muted-foreground">
-                        คงเหลือ {p.stock} ชิ้น · ขายแล้ว {p.sold}
-                      </p>
+                <Reveal key={p.id} delay={i * 110}>
+                  <Link
+                    to="/product/$id"
+                    params={{ id: p.id }}
+                    className="tilt-card group block overflow-hidden rounded-2xl border border-border bg-card hover:-translate-y-1.5 hover:border-primary/40 hover:shadow-[var(--shadow-lift)]"
+                  >
+                    <div className="relative overflow-hidden bg-secondary">
+                      <img
+                        src={p.image}
+                        alt={p.name}
+                        width={1024}
+                        height={768}
+                        loading="lazy"
+                        className="aspect-[4/3] w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
+                      <span className="absolute left-4 top-4 rounded-full bg-ink px-3 py-1 text-[11px] font-medium text-ink-foreground">
+                        {p.category}
+                      </span>
                     </div>
-                    <p className="shrink-0 text-lg font-semibold text-primary">{thb(p.price)}</p>
-                  </div>
-                </Link>
+                    <div className="flex items-center justify-between gap-3 p-5">
+                      <div>
+                        <p className="font-medium">{p.name}</p>
+                        <p className="mt-1 text-xs text-muted-foreground">
+                          คงเหลือ {p.stock} ชิ้น · ขายแล้ว {p.sold}
+                        </p>
+                      </div>
+                      <p className="shrink-0 text-lg font-semibold text-primary">{thb(p.price)}</p>
+                    </div>
+                  </Link>
+                </Reveal>
               ))}
             </div>
+
           </div>
         </section>
 
         {/* STEPS */}
         <section className="mx-auto max-w-7xl px-6 py-20">
-          <p className="text-xs font-medium uppercase tracking-[0.2em] text-primary">ขั้นตอน</p>
-          <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">สั่งซื้อใน 3 ขั้นตอน</h2>
+          <Reveal>
+            <p className="text-xs font-medium uppercase tracking-[0.2em] text-primary">ขั้นตอน</p>
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
+              สั่งซื้อใน 3 ขั้นตอน
+            </h2>
+          </Reveal>
 
           <div className="mt-10 grid gap-5 md:grid-cols-3">
             {steps.map((s, i) => (
-              <div
+              <Reveal
                 key={s.n}
-                className="animate-fade-up relative rounded-2xl border border-border bg-card p-7"
-                style={{ "--fade-delay": `${i * 110}ms` } as React.CSSProperties}
+                delay={i * 110}
+                className="tilt-card group relative rounded-2xl border border-border bg-card p-7 hover:-translate-y-1 hover:border-primary/40 hover:shadow-[var(--shadow-lift)]"
               >
-                <span className="text-5xl font-semibold text-primary/15">{s.n}</span>
+                <span className="text-5xl font-semibold text-primary/15 transition-colors group-hover:text-primary/35">
+                  {s.n}
+                </span>
                 <p className="mt-3 text-lg font-medium">{s.title}</p>
                 <p className="mt-2 text-sm text-muted-foreground">{s.detail}</p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </section>
+
 
         {/* REVIEWS */}
         <section className="border-t border-border bg-muted/40">
