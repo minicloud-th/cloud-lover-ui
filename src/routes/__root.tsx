@@ -12,22 +12,33 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { CookieBanner } from "@/components/cookie-banner";
+import { ChatWidget } from "@/components/chat-widget";
+import { CursorGlow } from "@/components/cursor-glow";
+import { ShopProvider } from "@/lib/store-state";
+import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
+    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-background px-4">
+      <div className="grid-lines absolute inset-0 opacity-40" aria-hidden />
+      <div className="relative max-w-md text-center">
+        <p className="animate-float text-8xl font-semibold text-gradient">404</p>
+        <h1 className="mt-4 text-xl font-semibold text-foreground">หลุดออกนอกแมพแล้ว!</h1>
         <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
+          ไม่พบหน้านี้ในเซิร์ฟเวอร์ ลองกลับไปที่ฐานแล้วเริ่มใหม่อีกครั้ง
         </p>
-        <div className="mt-6">
+        <div className="mt-7 flex justify-center gap-2">
           <Link
             to="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className="inline-flex items-center justify-center rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
-            Go home
+            กลับหน้าหลัก
+          </Link>
+          <Link
+            to="/store"
+            className="inline-flex items-center justify-center rounded-full border border-border px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-muted"
+          >
+            ไปร้านค้า
           </Link>
         </div>
       </div>
@@ -132,8 +143,13 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
-      <CookieBanner />
+      <ShopProvider>
+        <Outlet />
+        <CursorGlow />
+        <ChatWidget />
+        <CookieBanner />
+        <Toaster position="top-center" richColors />
+      </ShopProvider>
     </QueryClientProvider>
   );
 }

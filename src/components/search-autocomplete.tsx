@@ -46,7 +46,7 @@ export function SearchAutocomplete({
         onSubmit={(e) => {
           e.preventDefault();
           setOpen(false);
-          navigate({ to: "/store", search: { q: query.trim() || undefined } });
+          navigate({ to: "/store" });
         }}
         className="flex items-center gap-3 rounded-full border border-border bg-card/80 px-5 py-3 backdrop-blur transition-colors focus-within:border-primary"
       >
